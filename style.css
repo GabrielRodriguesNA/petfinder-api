@@ -1,0 +1,273 @@
+/* Reset e Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: #2c5530;
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+}
+
+.header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color 0.3s;
+}
+
+.header nav a:hover {
+    color: #4CAF50;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #4CAF50, #2c5530);
+    color: white;
+    padding: 120px 0 80px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* Botões */
+.btn-primary {
+    display: inline-block;
+    background: #FF9800;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #F57C00;
+}
+
+.btn-secondary {
+    background: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #1976D2;
+}
+
+/* Como Funciona */
+.como-funciona {
+    padding: 80px 0;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.como-funciona h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2c5530;
+}
+
+.passos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.passo {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.passo span {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Catálogo */
+.catalogo {
+    padding: 80px 0;
+}
+
+.catalogo h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2c5530;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+/* Filtros */
+.filtros {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.btn-filtro {
+    background: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-filtro.active,
+.btn-filtro:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Grid de Animais */
+.animais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.animal-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.animal-card:hover {
+    transform: translateY(-5px);
+}
+
+.animal-image {
+    height: 200px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.animal-content {
+    padding: 1.5rem;
+}
+
+.animal-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c5530;
+}
+
+.animal-info {
+    margin-bottom: 1rem;
+}
+
+.animal-info p {
+    margin: 0.3rem 0;
+    color: #666;
+}
+
+.btn-adotar {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-adotar:hover {
+    background: #45a049;
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .header nav a {
+        margin: 0 1rem;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .animais-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -7,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Banco de dados em memória (simples e eficaz)
+// Banco de dados em memória
 let database = {
   usuarios: [
     { id: 1, nome: 'ONG Amigos dos Pets', email: 'ong@email.com', tipo: 'ong' },
@@ -53,28 +54,30 @@ let database = {
 
 // ================== ROTAS DA API ==================
 
-// 📍 PÁGINA INICIAL
+// 📍 PÁGINA INICIAL - CORRIGIDA
 app.get('/', (req, res) => {
   res.json({ 
     message: '🚀 API PetFinder Online!',
     endpoints: {
-      animais: 'GET /animais',
-      cadastrar_animal: 'POST /animais',
-      interesses: 'POST /interesses',
-      usuarios: 'POST /usuarios'
+      animais: 'GET /api/animais',
+      cadastrar_animal: 'POST /api/animais',
+      interesses: 'POST /api/interesses',
+      usuarios: 'POST /api/usuarios'
     },
     status: '✅ Funcionando no Render.com!'
   });
 });
 
-// 📍 LISTAR ANIMAIS
-app.get('/animais', (req, res) => {
+// 📍 LISTAR ANIMAIS - CORRIGIDA
+app.get('/api/animais', (req, res) => {
+  console.log('📦 Retornando animais:', database.animais.length);
   const animaisDisponiveis = database.animais.filter(animal => animal.status === 'disponivel');
   res.json(animaisDisponiveis);
 });
 
-// 📍 CADASTRAR ANIMAL
-app.post('/animais', (req, res) => {
+// 📍 CADASTRAR ANIMAL - CORRIGIDA
+app.post('/api/animais', (req, res) => {
+  console.log('➕ Cadastrando animal:', req.body);
   const { nome, especie, raca, idade, descricao } = req.body;
   const novoAnimal = {
     id: database.animais.length + 1,
@@ -91,8 +94,9 @@ app.post('/animais', (req, res) => {
   res.json({ ...novoAnimal, message: 'Animal cadastrado com sucesso!' });
 });
 
-// 📍 DEMONSTRAR INTERESSE
-app.post('/interesses', (req, res) => {
+// 📍 DEMONSTRAR INTERESSE - CORRIGIDA
+app.post('/api/interesses', (req, res) => {
+  console.log('❤️ Registrando interesse:', req.body);
   const { animal_id, usuario_id } = req.body;
   const novoInteresse = {
     id: database.interesses.length + 1,
@@ -105,8 +109,9 @@ app.post('/interesses', (req, res) => {
   res.json({ ...novoInteresse, message: 'Interesse registrado com sucesso!' });
 });
 
-// 📍 CADASTRAR USUÁRIO
-app.post('/usuarios', (req, res) => {
+// 📍 CADASTRAR USUÁRIO - CORRIGIDA
+app.post('/api/usuarios', (req, res) => {
+  console.log('👤 Cadastrando usuário:', req.body);
   const { nome, email, tipo } = req.body;
   const novoUsuario = {
     id: database.usuarios.length + 1,
@@ -118,8 +123,26 @@ app.post('/usuarios', (req, res) => {
   res.json({ ...novoUsuario, message: 'Usuário cadastrado com sucesso!' });
 });
 
+// Rota fallback para evitar "Cannot GET"
+app.get('*', (req, res) => {
+  res.json({ 
+    error: 'Rota não encontrada',
+    available_routes: {
+      home: 'GET /',
+      animais: 'GET /api/animais',
+      cadastrar_animal: 'POST /api/animais',
+      interesses: 'POST /api/interesses', 
+      usuarios: 'POST /api/usuarios'
+    }
+  });
+});
+
 // INICIAR SERVIDOR
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
-  console.log(`📡 URL: https://petfinder-api.onrender.com`);
+  console.log(`=================================`);
+  console.log(`🚀 PETFINDER API RODANDO!`);
+  console.log(`📡 Porta: ${PORT}`);
+  console.log(`🌐 URL: https://petfinder-api.onrender.com`);
+  console.log(`🐾 Endpoint animais: /api/animais`);
+  console.log(`=================================`);
 });

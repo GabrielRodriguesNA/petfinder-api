@@ -14,9 +14,39 @@ let database = {
     { id: 2, nome: 'João Silva', email: 'joao@email.com', tipo: 'adotante' }
   ],
   animais: [
-    { id: 1, nome: 'Rex', especie: 'cachorro', raca: 'Vira-lata', idade: 2, descricao: 'Muito brincalhão', status: 'disponivel', ong_id: 1 },
-    { id: 2, nome: 'Mimi', especie: 'gato', raca: 'Siamês', idade: 1, descricao: 'Calma e amorosa', status: 'disponivel', ong_id: 1 },
-    { id: 3, nome: 'Thor', especie: 'cachorro', raca: 'Labrador', idade: 3, descricao: 'Adora passeios', status: 'disponivel', ong_id: 1 }
+    { 
+      id: 1, 
+      nome: 'Rex', 
+      especie: 'cachorro', 
+      raca: 'Vira-lata', 
+      idade: 2, 
+      descricao: 'Muito brincalhão e carinhoso', 
+      status: 'disponivel', 
+      ong_id: 1,
+      ong_nome: 'ONG Amigos dos Pets'
+    },
+    { 
+      id: 2, 
+      nome: 'Mimi', 
+      especie: 'gato', 
+      raca: 'Siamês', 
+      idade: 1, 
+      descricao: 'Calma e amorosa', 
+      status: 'disponivel', 
+      ong_id: 1,
+      ong_nome: 'ONG Amigos dos Pets'
+    },
+    { 
+      id: 3, 
+      nome: 'Thor', 
+      especie: 'cachorro', 
+      raca: 'Labrador', 
+      idade: 3, 
+      descricao: 'Adora crianças e passeios', 
+      status: 'disponivel', 
+      ong_id: 1,
+      ong_nome: 'ONG Amigos dos Pets'
+    }
   ],
   interesses: []
 };
@@ -32,22 +62,15 @@ app.get('/', (req, res) => {
       cadastrar_animal: 'POST /animais',
       interesses: 'POST /interesses',
       usuarios: 'POST /usuarios'
-    }
+    },
+    status: '✅ Funcionando no Render.com!'
   });
 });
 
 // 📍 LISTAR ANIMAIS
 app.get('/animais', (req, res) => {
-  const animaisComONG = database.animais
-    .filter(animal => animal.status === 'disponivel')
-    .map(animal => {
-      const ong = database.usuarios.find(u => u.id === animal.ong_id);
-      return {
-        ...animal,
-        ong_nome: ong ? ong.nome : 'ONG'
-      };
-    });
-  res.json(animaisComONG);
+  const animaisDisponiveis = database.animais.filter(animal => animal.status === 'disponivel');
+  res.json(animaisDisponiveis);
 });
 
 // 📍 CADASTRAR ANIMAL
@@ -61,10 +84,11 @@ app.post('/animais', (req, res) => {
     idade: idade || 0,
     descricao: descricao || '',
     status: 'disponivel',
-    ong_id: 1
+    ong_id: 1,
+    ong_nome: 'ONG Amigos dos Pets'
   };
   database.animais.push(novoAnimal);
-  res.json({ ...novoAnimal, message: 'Animal cadastrado!' });
+  res.json({ ...novoAnimal, message: 'Animal cadastrado com sucesso!' });
 });
 
 // 📍 DEMONSTRAR INTERESSE
@@ -78,7 +102,7 @@ app.post('/interesses', (req, res) => {
     status: 'pendente'
   };
   database.interesses.push(novoInteresse);
-  res.json({ ...novoInteresse, message: 'Interesse registrado!' });
+  res.json({ ...novoInteresse, message: 'Interesse registrado com sucesso!' });
 });
 
 // 📍 CADASTRAR USUÁRIO
@@ -91,10 +115,11 @@ app.post('/usuarios', (req, res) => {
     tipo: tipo || 'adotante'
   };
   database.usuarios.push(novoUsuario);
-  res.json({ ...novoUsuario, message: 'Usuário cadastrado!' });
+  res.json({ ...novoUsuario, message: 'Usuário cadastrado com sucesso!' });
 });
 
 // INICIAR SERVIDOR
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`📡 URL: https://petfinder-api.onrender.com`);
 });

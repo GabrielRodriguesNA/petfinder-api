@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetFinder - Adoção de Animais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🐾 PetFinder</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#adotar">Adotar</a>
+                <a href="#sobre">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Encontre seu amigo pet ideal</h2>
+            <p>Centenas de cães e gatos esperando por um lar cheio de amor</p>
+            <a href="#adotar" class="btn-primary">Ver Pets Disponíveis</a>
+        </div>
+    </section>
+
+    <!-- Como Funciona -->
+    <section class="como-funciona">
+        <div class="container">
+            <h2>Como a adoção funciona</h2>
+            <div class="passos">
+                <div class="passo">
+                    <span>1</span>
+                    <h3>Encontre seu pet</h3>
+                    <p>Navegue pelos animais disponíveis</p>
+                </div>
+                <div class="passo">
+                    <span>2</span>
+                    <h3>Demonstre interesse</h3>
+                    <p>Clique em "Tenho Interesse"</p>
+                </div>
+                <div class="passo">
+                    <span>3</span>
+                    <h3>Conheça o animal</h3>
+                    <p>A ONG entrará em contato</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Animais -->
+    <section id="adotar" class="catalogo">
+        <div class="container">
+            <h2>Pets Disponíveis para Adoção</h2>
+            <p class="subtitle">Conheça nossos amiguinhos que buscam um lar</p>
+            
+            <!-- Filtros Simples -->
+            <div class="filtros">
+                <button class="btn-filtro active" onclick="filtrarAnimais('todos')">Todos</button>
+                <button class="btn-filtro" onclick="filtrarAnimais('cachorro')">Cachorros</button>
+                <button class="btn-filtro" onclick="filtrarAnimais('gato')">Gatos</button>
+            </div>
+
+            <!-- Container dos Animais -->
+            <div id="animais-container" class="animais-grid">
+                <!-- JavaScript vai preencher aqui -->
+            </div>
+
+            <!-- Botão para cadastrar novo animal -->
+            <div style="text-align: center; margin-top: 40px;">
+                <button onclick="cadastrarAnimal()" class="btn-secondary">
+                    ➕ Cadastrar Novo Animal
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PetFinder. Todos os direitos reservados.</p>
+            <p>Projeto acadêmico - PIT SI II</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
